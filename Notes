@@ -1,0 +1,207 @@
+
+Dementia Severity Classifier: Analyzing Predictions Across Multiple Levels
+
+
+1
+Problem Statement
+Create a tool that bridges the emotional journey of dementia sufferers and their caregivers by predicting severity through everyday clinical data. Simplify complex profiles for accessible insights, fostering early intervention and support in routine healthcare settings.
+
+2
+Business Applications of the Predictive Model
+Business Impact: Reduced legal risks, improved patient trust, and increased efficiency contribute to long-term business sustainability.
+Enhanced Diagnosis Precision
+Business Impact: Cost-effectiveness and improved resource utilization contribute to enhanced profitability and organizational efficiency.
+
+
+Optimized Resource Allocation
+Business Impact: Enhanced patient care improves reputation, attracting more clients and fostering loyalty.
+Early Intervention & Tailored Treatment
+3
+Oasis Cross-Sectional Studies dataset provided by
+ Open Access Series of Imaging Studies (OASIS)
+4
+Dataset
+Overview
+
+
+5
+Dataset Explanation
+ID: Unique identifier for each record or patient.
+M/F: Gender of the patients (Male or Female).
+Age: Age of the patients.
+Identification and Demographics
+Educ: Level of education of the patients.
+SES: Socioeconomic status of the patients.
+Educational and Socioeconomic Factors
+MMSE Mini-Mental State Examination score, a measure for assessing cognitive impairment.
+Cognitive Assessment Scores
+
+
+6
+eTIV : Estimated Total Intracranial Volume,
+nWBV : Normalized Whole Brain Volume,
+ASF : Atlas Scaling Factor.
+Neuroimaging
+Measures
+Hand : Represents the dominant hand of the patients (Right or Left).
+Dominant Hand Information
+CDR : Clinical Dementia Rating, the target variable indicating the severity of dementia
+Dementia Severity 
+Target
+Dataset Explanation
+
+
+7
+Exploratory Data Analysis 
+Histogram
+Box Plot
+
+
+8
+Exploratory Data Analysis 
+Correlation Matrix
+Scatter Plot
+8
+
+9
+Dataset Preparation
+Gather diverse MRI scans and clinical data from sources like the OASIS public archive to cover varying levels of dementia severity.
+Data 
+Collection
+Address missing values and outliers to ensure data integrity and prevent bias in the model
+Data 
+Cleaning
+Normalize/standardize numerical features for consistent model training.
+Data 
+Transformation
+
+
+10
+Divide the dataset into training, validation, and testing sets for effective model evaluation.
+Data 
+Splitting
+Convert categorical variables using methods like one-hot encoding or label encoding for machine learning compatibility.
+Data 
+Encoding
+Mitigate imbalances in dementia severity distribution through techniques like oversampling or undersampling.
+Handling 
+Imbalanced Data
+Dataset Preparation
+
+
+Oasis Cross-Sectional Studies dataset provided by
+ Open Access Series of Imaging Studies (OASIS)
+11
+Bridging Data 
+and Decision
+
+Model’s of Decision
+Random Forest Regressor
+Random Forest Classifier
+12
+Linear Regression
+Decision Tree Classifier
+
+
+13
+Identify dependent and independent variables.
+Analyze the correlation between different variables.
+Visualize positive and negative relationships using plots.
+Exploratory Data 
+Analysis
+Scale features using StandardScaler to standardize the dataset's features onto unit scale (mean = 0 and variance = 1).
+Split the data into a training set (80%) and a testing set (20%).
+Data Scaling 
+and Splitting
+Load data from a CSV file.
+Handle missing values by replacing them with the mean of the respective column.
+Encode categorical variables into numerical values.
+Data 
+Preprocessing
+Modeling Process
+
+14
+Select models for the task: RandomForestRegressor, RandomForestClassifier, LogisticRegression.
+Train each model using the fit() function on the scaled training data.
+Model Selection and Training
+Use trained models to predict the target variable on the test data.
+For RandomForestRegressor: Calculate Mean Squared Error (MSE).
+For Random Forest Classifier and Logistic Regression: Calculate accuracy and generate a classification report.
+Model 
+Evaluation
+Evaluate the results of each model.
+Classify predicted values into categories (e.g., dementia, non-dementia, mild dementia).
+Determine the best model based on evaluation metrics (MSE, accuracy, classification report).
+Result 
+Interpretation
+Modeling Process
+
+
+15
+Findings in 
+Linear Regression
+MSE of 0.0556 suggests a precise fit, aligning model 
+predictions closely with actual values.
+Mean Squared Error (MSE)
+'Age' coefficient at -0.000692 indicates a slight negative correlation with Clinical Dementia Rating (CDR)
+Coefficients Interpretation
+Intercept at 5.1449 represents the 
+predicted CDR when all features are zero.
+Intercept Value
+Negative coefficients for 'Educ', 'SES', 'MMSE', 'eTIV', 'nWBV', 'ASF' 
+suggest potential shields against dementia.
+Protective Factors
+
+
+16
+Findings in 
+Linear Regression
+
+
+Drawbacks in Linear Regression
+17
+Impact: Limits the model's ability to capture non-linear patterns in the data.
+Assumption of Linearity
+Impact: Outliers can disproportionately influence the model, affecting predictions.
+Sensitivity to Outliers
+
+
+18
+Findings in Decision Tree Classifier 
+77% accuracy in predicting dementia severity class 
+showcases reliable performance
+Model Accuracy
+Challenges arise with low recalls, especially for "Mild Dementia" (14%) and none for "Moderate Dementia," revealing limitations in identifying these cases.
+Recall Challenges
+Class-specific precision (e.g., 0.93 for CDR=0) and recall (e.g., 0.83 for CDR=0) provide detailed insights into model efficacy.
+Precision and Recall
+Examining the support column reveals the actual occurrences of each class in the test set, providing additional context for model performance
+Support Analysis
+
+
+19
+Findings in Decision Tree Classifier 
+
+
+Drawbacks in Decision Tree Classifier
+20
+Impact: Captures noise in the data, reducing the model's generalizability to new, unseen data.
+Prone to Overfitting
+Impact: Difficulty in understanding and explaining intricate decision-making processes.
+Lack of Interpretability for Complex Trees
+
+
+21
+Conclusion of Findings
+Evaluation of models
+Decision Tree Classifier
+77% accuracy showcases reliable dementia severity class prediction performance.
+Linear 
+Regression
+A low MSE of 0.0556 indicating a strong fit
+
+
+22
+Best Model Selection
+Decision Tree Classifier
+Given the likely non-linear relationships in healthcare data, the Decision Tree Classifier is more suitable for predicting dementia severity in our use case.
